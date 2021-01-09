@@ -30,7 +30,7 @@ class CreateGuardiansTable extends Migration
                 'cadastro_emprego', 'cartao_alimentacao','vale_leite',
                 'aposentado'
             ])->nullable();
-            $table->date('birthday');
+            $table->string('birthday');
             $table->string('phone_number', 20);
             $table->enum('healthcare_plan', [
                 'cartao_sus', 'posto_de_saude'
