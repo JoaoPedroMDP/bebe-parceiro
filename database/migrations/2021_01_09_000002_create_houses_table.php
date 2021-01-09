@@ -21,7 +21,7 @@ class CreateHousesTable extends Migration
                 'invasion'
                 ]);
             $table->integer('number_of_rooms');
-            $table->foreignId('address_id')->constrained();
+            $table->foreignId('address_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
