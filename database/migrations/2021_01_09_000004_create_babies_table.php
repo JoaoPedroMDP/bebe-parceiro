@@ -22,7 +22,7 @@ class CreateBabiesTable extends Migration
             $table->enum('sex', [
                 'male', 'female', 'unknown'
                 ]);
-            $table->foreignId()->constrained();
+            $table->foreignId('guardian_id')->constrained();
             $table->timestamps();
         });
     }

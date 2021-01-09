@@ -9,10 +9,10 @@ class Baby extends Model
 {
     protected $fillable = [
         'name', 'isBorn', 'birthday',
-        'weight', 'sex', 'parent_id'
+        'weight', 'sex', 'guardian_id'
     ];
 
-    public function parent(){
+    public function guardian(){
         return $this->belongsTo(Guardian::class);
     }
 }

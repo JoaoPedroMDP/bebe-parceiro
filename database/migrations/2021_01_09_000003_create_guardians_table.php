@@ -37,7 +37,7 @@ class CreateGuardiansTable extends Migration
             ])->nullable();
             $table->integer('donated');
             $table->integer('received');
-            $table->foreignId('housing_id')->constrained();
+            $table->foreignId('house_id')->constrained();
             $table->timestamps();
         });
     }
