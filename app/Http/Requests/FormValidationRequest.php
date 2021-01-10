@@ -48,9 +48,9 @@ class FormValidationRequest extends FormRequest
             'neighborhood'      => ['required_without:cep', 'string', 'max:50'],
             'number'            => ['required', 'integer', 'max:10000'],
             'complement'        => ['required', 'string', 'max:50'],
-            // // Housing data
-            // 'housing_condition' => ['required', 'in:financed,owner,rented,granted,inherited,social_program,invasion'],
-            // 'number_of_rooms'   => ['required', 'integer', 'max:15'],
+            // Housing data
+            'housing_condition' => ['required', 'in:financed,owner,rented,granted,inherited,social_program,invasion'],
+            'number_of_rooms'   => ['required', 'integer', 'max:15'],
         ];
     }
 }

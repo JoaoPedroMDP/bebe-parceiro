@@ -9,7 +9,7 @@ use App\Guardian;
 class House extends Model
 {
     protected $fillable = [
-        'housing_condition', 'number_of_rooms', 'address_id'
+        'housing_condition', 'number_of_rooms'
     ];
 
     public function address(){

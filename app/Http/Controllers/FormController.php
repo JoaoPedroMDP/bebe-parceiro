@@ -13,10 +13,10 @@ class FormController extends Controller
             return $this->response(null, 'Houve um erro ao armazenar o endereço, Por favor, revise os dados inseridos', 400);
         }
 
-        // $house = HouseController::store($request);
-        // if(!$house){
-        //     return $this->response(null, 'Houve um erro ao armazenar os dados da sua casa, Por favor, revise-os', 400);
-        // }
+        $house = HouseController::store($request, $address);
+        if(!$house){
+            return $this->response(null, 'Houve um erro ao armazenar os dados da sua casa, Por favor, revise-os', 400);
+        }
 
         // $guardian = GuardianController::store($request);
         // if(!$guardian){
