@@ -29,7 +29,10 @@ class AddressController extends Controller
             $newAddressData['street'] = $request->street;
             $newAddressData['neighborhood'] = $request->neighborhood;
         }
-        $address = Address::create($newAddressData);
+        $address = new Address;
+        $address->fill($newAddressData);
+        $address->save();
+        
         return $address;
     }
 }

@@ -14,19 +14,21 @@ class FormController extends Controller
 
         $house = HouseController::store($request, $address);
         if(!$house){
+            $address->delete();
             return $this->response(null, 'Houve um erro ao armazenar os dados da sua casa, Por favor, revise-os', 400);
         }
-
+        
         $guardian = GuardianController::store($request, $house);
         if(!$guardian){
-            return $this->response(null, 'Houve um erro ao armazenar seus dadis, Por favor, revise-os', 400);
+            $address->delete();
+            return $this->response(null, 'Houve um erro ao armazenar seus dados, Por favor, revise-os', 400);
         }
-
-        // $baby = BabyController::store($request);
-        // if(!$baby){
-        //     return $this->response(null, 'Houve um erro ao armazenar os dados de seu bebê, Por favor, revise-os', 400);
-        // }
-
-        return $this->response(null, 'Sucesso', 201);
+        
+        $baby = BabyController::store($request, $guardian);
+        if(!$baby){
+            $address->delete();
+            return $this->response(null, 'Houve um erro ao armazenar os dados de seu bebê, Por favor, revise-os', 400);
+        }
+        return $this->response($baby, 'Sucesso', 201);
     }
 }

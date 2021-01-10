@@ -36,12 +36,12 @@ class FormValidationRequest extends FormRequest
             'phone_number'      => ['required', 'string', 'regex:#^(\(?\d{2}\)?\s?)?(\d{4,5}\-?\d{4})$#'],
             'healthcare_plan'   => ['nullable', 'in:cartao_sus,posto_de_saude'],
             'donated'           => ['required', 'integer', 'max:1000'],
-            // // Baby data
-            // 'name'              => ['nullable', 'regex:^([a-zA-Zà-ù]+\s?)+$'],
-            // 'isBorn'            => ['required', 'boolean'],
-            // 'birthday'          => ['required', 'date_format:dd/mm/yyyy'],
-            // 'weight'            => ['required', 'float', 'max:20'],
-            // 'sex'               => ['required', 'in:male,female,unknown'],
+            // Baby data
+            'name'              => ['nullable', 'regex:#^([a-zA-Zà-ù]+\s?)+$#'],
+            'isBorn'            => ['required', 'boolean'],
+            'birthday'          => ['required', 'date_format:d/m/Y'],
+            'weight'            => ['required', 'numeric', 'max:10'],
+            'sex'               => ['required', 'in:male,female,unknown'],
             // Address data
             'cep'               => ['nullable', 'string', 'max:15'],
             'street'            => ['required_without:cep', 'string', 'max:200'],
