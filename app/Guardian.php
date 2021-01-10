@@ -8,7 +8,7 @@ use App\House;
 
 class Guardian extends Model
 {
-    protected $fillabe = [
+    protected $fillable = [
         'first_name', 'last_name',
         'needs_contact', 'marital_status', 'child_number',
         'deaf', 'email', 'housing_id',

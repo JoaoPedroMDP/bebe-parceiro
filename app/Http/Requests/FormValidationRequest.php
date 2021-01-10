@@ -24,18 +24,18 @@ class FormValidationRequest extends FormRequest
     public function rules()
     {
         return [
-            // // Guardian data
-            // 'first_name'        => ['required', 'string', 'max:100', 'regex:^([a-zA-Zà-ù]+\s?)+$'],
-            // 'last_name'         => ['required', 'string', 'max:200', 'regex:^([a-zA-Zà-ù]+\s?)+$'],
-            // 'marital_status'    => ['required', 'in:single,married,divorced,widowed,separated'],
-            // 'child_number'      => ['required', 'integer', 'between:1,30'],
-            // 'deaf'              => ['required', 'boolean'],
-            // 'email'             => ['required', 'email', 'unique:guardians,email'],
-            // 'social_benefits'   => ['required', 'in:cadunico,mcasa_mvida,bolsa_familia,cadastro_emprego,cartao_alimentacao,vale_leite,aposentado'],
-            // 'birthday'          => ['required', 'date_format:dd/mm/yyyy'],
-            // 'phone_number'      => ['required', 'string', 'regex:^(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})$'],
-            // 'healthcare_plan'   => ['nullable', 'in:cartao_sus,posto_de_saude'],
-            // 'donated'           => ['required', 'integer'],
+            // Guardian data
+            'first_name'        => ['required', 'string', 'max:100', 'regex:#^([a-zA-Zà-ù]+\s?)+$#'],
+            'last_name'         => ['required', 'string', 'max:200', 'regex:#^([a-zA-Zà-ù]+\s?)+$#'],
+            'marital_status'    => ['required', 'in:single,married,divorced,widowed,separated'],
+            'child_number'      => ['required', 'integer', 'between:1,30'],
+            'deaf'              => ['required', 'boolean'],
+            'email'             => ['required', 'email', 'unique:guardians,email'],
+            'social_benefits'   => ['required', 'in:cadunico,mcasa_mvida,bolsa_familia,cadastro_emprego,cartao_alimentacao,vale_leite,aposentado'],
+            'birthday'          => ['required', 'date_format:d/m/Y'],
+            'phone_number'      => ['required', 'string', 'regex:#^(\(?\d{2}\)?\s?)?(\d{4,5}\-?\d{4})$#'],
+            'healthcare_plan'   => ['nullable', 'in:cartao_sus,posto_de_saude'],
+            'donated'           => ['required', 'integer', 'max:1000'],
             // // Baby data
             // 'name'              => ['nullable', 'regex:^([a-zA-Zà-ù]+\s?)+$'],
             // 'isBorn'            => ['required', 'boolean'],

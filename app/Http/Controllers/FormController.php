@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\FormValidationRequest;
-use App\Http\Controllers\{AddressController};
 class FormController extends Controller
 {
     public function store(FormValidationRequest $request){
@@ -18,10 +17,10 @@ class FormController extends Controller
             return $this->response(null, 'Houve um erro ao armazenar os dados da sua casa, Por favor, revise-os', 400);
         }
 
-        // $guardian = GuardianController::store($request);
-        // if(!$guardian){
-        //     return $this->response(null, 'Houve um erro ao armazenar seus dadis, Por favor, revise-os', 400);
-        // }
+        $guardian = GuardianController::store($request, $house);
+        if(!$guardian){
+            return $this->response(null, 'Houve um erro ao armazenar seus dadis, Por favor, revise-os', 400);
+        }
 
         // $baby = BabyController::store($request);
         // if(!$baby){
