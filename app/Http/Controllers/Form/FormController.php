@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Form;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\FormValidationRequest;
