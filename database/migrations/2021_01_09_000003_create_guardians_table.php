@@ -24,13 +24,13 @@ class CreateGuardiansTable extends Migration
             ]);
             $table->integer('child_number');
             $table->boolean('deaf');
-            $table->string('email')->unique();
+            $table->string('email', 150)->unique();
             $table->enum('social_benefits', [
                 'cadunico' ,'mcasa_mvida', 'bolsa_familia',
                 'cadastro_emprego', 'cartao_alimentacao','vale_leite',
                 'aposentado'
             ])->nullable();
-            $table->string('birthday');
+            $table->string('birthday', 10);
             $table->string('phone_number', 20);
             $table->enum('healthcare_plan', [
                 'cartao_sus', 'posto_de_saude'
