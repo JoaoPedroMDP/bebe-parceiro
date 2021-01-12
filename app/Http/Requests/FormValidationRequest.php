@@ -30,7 +30,7 @@ class FormValidationRequest extends FormRequest
             'marital_status'    => ['required', 'in:single,married,divorced,widowed,separated'],
             'child_number'      => ['required', 'integer', 'between:1,30'],
             'deaf'              => ['required', 'boolean'],
-            'email'             => ['required', 'email', 'unique:guardians,email'],
+            'email'             => ['required', 'email', 'unique:guardians,email', 'max:150'],
             'social_benefits'   => ['required', 'in:cadunico,mcasa_mvida,bolsa_familia,cadastro_emprego,cartao_alimentacao,vale_leite,aposentado'],
             'birthday'          => ['required', 'date_format:d/m/Y'],
             'phone_number'      => ['required', 'string', 'regex:#^(\(?\d{2}\)?\s?)?(\d{4,5}\-?\d{4})$#'],

@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('form', 'FormController@store');
+Route::post('form', 'Form\FormController@store');
+Route::post('login', 'Admin\UserController@login');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group(function () {
+    Route::post('newUser', 'Admin\UserController@store');
+    Route::apiResource('guardian', 'Form\GuardianController')->except(['store']);
 });
