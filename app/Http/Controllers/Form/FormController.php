@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Form;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\FormValidationRequest;
 class FormController extends Controller
