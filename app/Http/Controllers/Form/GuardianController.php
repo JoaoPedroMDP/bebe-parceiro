@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Form;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Guardian;
+use App\Helpers\Wrapper\Wrapper;
 
 class GuardianController extends Controller
 {
@@ -43,5 +44,16 @@ class GuardianController extends Controller
         $guardian->save();
 
         return $guardian; 
+    }
+
+    public function index($entries){
+        if(is_numeric($entries)){
+            $entries = intval($entries);
+            $guardians = Guardian::paginate($entries);
+
+            return $this->response(Wrapper::wrapGuardianPagination($guardians), 200);
+        }
+        // Não desejo expor as verificações para o front. Prefiro fingir que algo deu errado
+        return $this->response(null, 500, 'Something went wrong');
     }
 }
