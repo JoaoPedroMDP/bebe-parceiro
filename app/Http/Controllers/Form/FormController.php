@@ -30,6 +30,6 @@ class FormController extends Controller
             $address->delete();
             return $this->response(null, 'Houve um erro ao armazenar os dados de seu bebê, Por favor, revise-os', 400);
         }
-        return $this->response($baby, 'Sucesso', 201);
+        return $this->response($baby, 201);
     }
 }

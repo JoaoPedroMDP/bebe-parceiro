@@ -13,10 +13,10 @@ class Controller extends BaseController
 
     /** Para facilitar retornos ao front 
      * @param data array
-     * @param message string
      * @param code integer
+     * @param message string nullable
     */
-    protected function response($data, $message, $code){
+    protected function response($data, $code, $message = 'No message'){
         return response()->json([
             'Data' => $data,
             'Message' => $message,

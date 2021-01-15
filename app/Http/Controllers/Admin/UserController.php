@@ -22,7 +22,7 @@ class UserController extends Controller
             }
             return $this->response(['Token' => $token], 'Autenticado', 200);
         }
-        return $this->response(null, 'Credenciais inválidas', 400);
+        return $this->response(null, 400, 'Credenciais inválidas');
     }
 
     public function store(Store $request)
@@ -32,10 +32,10 @@ class UserController extends Controller
 
         $user = User::create($newUserData);
         if($user){
-            return $this->response($user, 'Usuário criado!', 201);
+            return $this->response($user, 201, 'Usuário criado!');
         }else{
             //TODO Criar função de logging
-            return $this->response(null, 'Erro interno', 500);
+            return $this->response(null, 500, 'Erro interno');
         }
     }
 }
