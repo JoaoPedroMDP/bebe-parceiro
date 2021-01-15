@@ -20,7 +20,7 @@ class UserController extends Controller
             }else{
                 $token = $user->token();
             }
-            return $this->response(['Token' => $token], 'Autenticado', 200);
+            return $this->response(['Token' => $token], 200, 'Autenticado');
         }
         return $this->response(null, 400, 'Credenciais inválidas');
     }
