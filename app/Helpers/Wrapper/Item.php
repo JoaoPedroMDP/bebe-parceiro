@@ -5,8 +5,8 @@ namespace App\Helpers\Wrapper;
 class Item{
     protected $values = [];
 
-    public function __constructor($array){
-        foreach($array as $item => $key){
+    public function __construct($array){
+        foreach($array as $key => $item){
             $this->setValue($key, $item);
         }
     }
@@ -17,5 +17,9 @@ class Item{
 
     public function unsetValue($key){
         unset($this->values[$key]);
+    }
+
+    public function toArray(){
+        return $this->values;
     }
 }

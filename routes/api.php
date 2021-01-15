@@ -19,5 +19,5 @@ Route::post('login', 'Admin\UserController@login');
 
 Route::middleware('auth:api')->group(function () {
     Route::post('newUser', 'Admin\UserController@store');
-    Route::get('guardian/{entries}{page?}', 'Form\GuardianController@index');
+    Route::get('guardians/{entries}{page?}', 'Form\GuardianController@index');
 });

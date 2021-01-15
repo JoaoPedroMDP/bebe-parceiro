@@ -1,20 +1,30 @@
 <?php
 
 namespace App\Helpers\Wrapper;
-use Item;
+
+use App\Helpers\Wrapper\Item;
+
 class Wrapper{
 
-    protected $items = [];
+    public static $items = [];
 
-    public static function wrapGuardianPagination($paginatedGuardians){
-        $items = $paginatedGuardians->items();
+    public static function wrapGuardianPagination($array){
+        $items = $array->items();
         foreach($items as $item){
-            $newItem = new Item([
-                //TODO preciso extrair os campos e colocar dentro desse array
-            ]);
+            $item = new Item(
+                collect( 
+                    $item->toArray()
+                )->except(
+                    'updated_at', 'created_at'
+                )->all()
+            );
 
-            $this->items
+            self::pushItem($item);
         }
-        dd($justUsefulItems);
+        return self::$items;
+    }
+
+    public static function pushItem(Item $item){
+        self::$items[] = $item->toArray();
     }
 }
