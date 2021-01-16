@@ -29,6 +29,11 @@ class Arrays{
         'male', 'female', 'unknown'
     ];
 
+    protected static $clothing_size = [
+        'RN', 'P' , 'M', 
+        'G' , 'GG', '1_ANO'
+    ];
+
     public static function getHousingCondition(){
         return self::$housing_condition;
     }
@@ -36,13 +41,20 @@ class Arrays{
     public static function getSocialBenefits(){
         return self::$social_benefits;
     }
+
     public static function getHealthcarePlan(){
         return self::$healthcare_plan;
     }
+
     public static function getMaritalStatus(){
         return self::$marital_status;
     }
+
     public static function getSex(){
         return self::$sex;
+    }
+    
+    public static function getClothingSize(){
+        return self::$clothing_size;
     }
 }

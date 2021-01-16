@@ -19,6 +19,9 @@ class CreateBabiesTable extends Migration
             $table->boolean('isBorn');
             $table->string('birthday');
             $table->float('weight');
+            $table->enum('clothing_size',[
+                'RN', 'P', 'M', 'G', 'GG', '1-ANO'
+            ]);
             $table->enum('sex', [
                 'male', 'female', 'unknown'
                 ]);

@@ -42,6 +42,7 @@ class FormValidationRequest extends FormRequest
             'birthday'          => ['required', 'date_format:d/m/Y'],
             'weight'            => ['required', 'numeric', 'max:10'],
             'sex'               => ['required', 'in:male,female,unknown'],
+            'clothing_size'     => ['required_if:isBorn,false', 'in:RN,P,M,G,GG,1_ANO'],
             // Address data
             'cep'               => ['nullable', 'string', 'max:15'],
             'street'            => ['required_without:cep', 'string', 'max:200'],
