@@ -28,7 +28,8 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::tokensExpireIn(now()->addDays(2));
         Passport::tokensCan([
-            'admin' => 'evertything'
+            'admin' => 'Tudo',
+            'secre' => 'Pode visualizar e editar'
         ]);
     }
 }

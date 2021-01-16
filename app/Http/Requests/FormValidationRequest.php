@@ -24,7 +24,7 @@ class FormValidationRequest extends FormRequest
     public function rules()
     {
         return [
-            // Guardian data
+            // GUARDIAN DATA
             'first_name'        => ['required', 'string', 'max:100', 'regex:#^([a-zA-Zà-ù]+\s?)+$#'],
             'last_name'         => ['required', 'string', 'max:200', 'regex:#^([a-zA-Zà-ù]+\s?)+$#'],
             'marital_status'    => ['required', 'in:single,married,divorced,widowed,separated'],
@@ -36,20 +36,20 @@ class FormValidationRequest extends FormRequest
             'phone_number'      => ['required', 'string', 'regex:#^(\(?\d{2}\)?\s?)?(\d{4,5}\-?\d{4})$#'],
             'healthcare_plan'   => ['nullable', 'in:cartao_sus,posto_de_saude'],
             'donated'           => ['required', 'integer', 'max:1000'],
-            // Baby data
+            // BABY DATA
             'name'              => ['nullable', 'regex:#^([a-zA-Zà-ù]+\s?)+$#'],
             'isBorn'            => ['required', 'boolean'],
             'birthday'          => ['required', 'date_format:d/m/Y'],
             'weight'            => ['required', 'numeric', 'max:10'],
             'sex'               => ['required', 'in:male,female,unknown'],
             'clothing_size'     => ['required_if:isBorn,false', 'in:RN,P,M,G,GG,1_ANO'],
-            // Address data
+            // ADDRESS DATA
             'cep'               => ['nullable', 'string', 'max:15'],
             'street'            => ['required_without:cep', 'string', 'max:200'],
             'neighborhood'      => ['required_without:cep', 'string', 'max:50'],
             'number'            => ['required', 'integer', 'max:10000'],
             'complement'        => ['required', 'string', 'max:50'],
-            // Housing data
+            // HOUSING DATA
             'housing_condition' => ['required', 'in:financed,owner,rented,granted,inherited,social_program,invasion'],
             'number_of_rooms'   => ['required', 'integer', 'max:15'],
         ];
