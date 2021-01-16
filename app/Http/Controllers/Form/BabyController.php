@@ -10,11 +10,12 @@ class BabyController extends Controller
 {
     public static function store($request, $guardian){
         $newbabyData = [
-            'name' => $request->name ? $request->name : 'unknown',
+            'name' => $request->name,
             'isBorn' => $request->isBorn,
             'birthday' => $request->birthday,
             'weight' => $request->weight,
             'sex' => $request->sex,
+            'clothing_size' => $request->clothing_size
         ];
 
         $baby = new Baby;
