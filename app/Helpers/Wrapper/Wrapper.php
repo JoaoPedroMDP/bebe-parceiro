@@ -28,6 +28,19 @@ class Wrapper{
         return self::$items;
     }
 
-    // TODO
-    public static function wrapUserCodes(){}
+    public static function wrapUserCodes($codes){
+        foreach($codes as $code){
+            $item = new Item(
+                collect( 
+                    $code->toArray()
+                )->only(
+                    'code', 'available'
+                )->all()
+            );
+
+            self::pushItem($item);
+        }
+
+        return self::$items;
+    }
 }
