@@ -2,7 +2,7 @@
 
 namespace App\Library;
 
-class Arrays{
+class Enumerables{
 
     protected static $housing_condition = [
         'financed', 'owner', 'rented',
@@ -34,26 +34,7 @@ class Arrays{
         'G' , 'GG', '1_ANO'
     ];
     
-    protected static $lowChar = [
-        'a','b','c','d','e','f',
-        'g','h','i','j','k','l',
-        'm','n','o','p','q','r',
-        's','t','u','v','w','x',
-        'y','z'
-    ];
 
-    protected static $upChar = [
-        'A','B','C','D','E','F',
-        'G','H','I','J','K','L',
-        'M','N','O','P','Q','R',
-        'S','T','U','V','W','X',
-        'Y','Z'
-    ];
-
-    protected static $number = [
-        '1','2','3','4',
-        '5','6','7','8','9'
-    ];
 
     public static function getHousingCondition(){
         return self::$housing_condition;
@@ -77,17 +58,5 @@ class Arrays{
 
     public static function getClothingSize(){
         return self::$clothing_size;
-    }
-
-    public static function getLowChar(){
-        return self::$lowChar;
-    }
-
-    public static function getUpChar(){
-        return self::$upChar;
-    }
-
-    public static function getNumber(){
-        return self::$number;
     }
 }

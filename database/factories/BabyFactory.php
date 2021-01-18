@@ -4,10 +4,10 @@
 
 use App\Baby;
 use Faker\Generator as Faker;
-use App\Library\Arrays;
+use App\Library\Enumerables;
 
 $factory->define(Baby::class, function (Faker $faker) {
-    $sex = Arrays::getSex();
+    $sex = Enumerables::getSex();
     $isBorn = $faker->boolean();
 
     return [

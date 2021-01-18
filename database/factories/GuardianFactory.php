@@ -3,13 +3,13 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Guardian;
-use App\Library\Arrays;
+use App\Library\Enumerables;
 use Faker\Generator as Faker;
 
 $factory->define(Guardian::class, function (Faker $faker) {
-    $maritalStatuses = Arrays::getMaritalStatus();
-    $socialBenefits = Arrays::getSocialBenefits();
-    $healthcarePlan = Arrays::getHealthcarePlan();
+    $maritalStatuses = Enumerables::getMaritalStatus();
+    $socialBenefits = Enumerables::getSocialBenefits();
+    $healthcarePlan = Enumerables::getHealthcarePlan();
     return [
         'first_name' => $faker->firstName(),
         'last_name' => $faker->lastName(),
