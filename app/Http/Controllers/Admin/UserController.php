@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Wrapper\Wrapper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{Login, Store};
-use App\Library\Arrays;
+use App\Library\{Enumerables, Codefy};
 use App\{User, Code};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,23 +13,14 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     private function userScopes(User $user){
-        switch($user->role){
-            case 'Administrator':
-                return 'admin';
-                break;
-            case 'Secretary':
-                return 'secre';
-                break;
-            default:
-                break;
-        }
+        return $user->role;
     }
 
     public function login(Login $request){
         if(auth()->attempt($request->validated())){
             $user = auth()->user();
             if($user->token() == ''){
-                $token = $user->createToken('Access Token', $this->userScopes($user))->accessToken;
+                $token = $user->createToken('Access Token', [$this->userScopes($user)])->accessToken;
             }else{
                 $token = $user->token();
             }
@@ -37,8 +29,7 @@ class UserController extends Controller
         return $this->response(null, 400, 'Credenciais inválidas');
     }
 
-    public function store(Store $request)
-    {
+    public function store(Store $request){
         $newUserData = $request->validated();
         $newUserData['password'] = bcrypt($newUserData['password']);
 
@@ -51,12 +42,12 @@ class UserController extends Controller
         }
     }
 
-    public function createCode(Request $request){
-        $codes = $this->generateCodes($request->user(), $request->amount());
+    public function createCode(Request $request, int $amount){
+        $codes = $this->generateCodes($request->user(), $amount);
 
-        return $this->response(Wrapper::wrapUserCodes($codes), 200, $request->amount .' codigos gerados');
+        return $this->response(Wrapper::wrapUserCodes($codes), 200, $amount .' codigos gerados');
     }
-    
+
     private function generateCodes(User $user, int $amount){
         for( $i = 0 ; $i < $amount ; $i++ ){
             $code = new Code;
@@ -65,7 +56,7 @@ class UserController extends Controller
                 'available' => true
             ]);
         
-            $code->associate($user);
+            $code->user()->associate($user);
             $code->save();
             $codes[] = $code;
         }
@@ -74,18 +65,15 @@ class UserController extends Controller
     }
 
     private function hashCode(string $name, int $id){
-        $upChar  = Arrays::getUpChar();
-        $number  = Arrays::getNumber();
+        $codefy = new Codefy;
 
-        $splittedName = str_split($name);
-        $uppercasedSplittedName = strtoupper($splittedName);
+        $uppercasedSplittedName = str_split(strtoupper($name));
 
-        $maskedUid = $id + Codefy::integerFromString(env('HASH_WORD'));
+        $firstTrio = $uppercasedSplittedName[0] . $codefy->getRandomUppercase() . $codefy->getRandomInteger();
+        $secondTrio = $codefy->getRandomUppercase() . $uppercasedSplittedName[1] . $codefy->getRandomInteger();
+        $quadra = $codefy->getRandomInteger() . $uppercasedSplittedName[2] . $uppercasedSplittedName[3] . $codefy->getRandomInteger();
 
-        $firstTrio = rand(0, count($upChar) - 1) . rand(0, count($upChar) - 1) . rand(0, count($number) - 1);
-        $secondTrio = rand(0, count($upChar) - 1) . rand(0, count($upChar) - 1) . rand(0, count($number) - 1);
-
-        $newCode = $maskedUid . '-' . $firstTrio . '-' . $secondTrio;
+        $newCode = $firstTrio . '-' . $secondTrio . '-' . $quadra;
 
         return $newCode;
     }
